@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="codeberg-auto">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>nsxiv-extra/patches/random-image/random-image-v31.diff at master - nsxiv/nsxiv-extra - Codeberg.org</title>
+	<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ29kZWJlcmcub3JnIiwic2hvcnRfbmFtZSI6IkNvZGViZXJnLm9yZyIsInN0YXJ0X3VybCI6Imh0dHBzOi8vY29kZWJlcmcub3JnLyIsImljb25zIjpbeyJzcmMiOiJodHRwczovL2NvZGViZXJnLm9yZy9hc3NldHMvaW1nL2xvZ28ucG5nIiwidHlwZSI6ImltYWdlL3BuZyIsInNpemVzIjoiNTEyeDUxMiJ9LHsic3JjIjoiaHR0cHM6Ly9jb2RlYmVyZy5vcmcvYXNzZXRzL2ltZy9sb2dvLnN2ZyIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwic2l6ZXMiOiI1MTJ4NTEyIn1dfQ==">
+	<meta name="author" content="nsxiv">
+	<meta name="description" content="nsxiv-extra - Community patches, scripts, tips and tricks for nsxiv.">
+	<meta name="keywords" content="git,non-profit,foss,oss,free,software,open,source,code,hosting">
+	<meta name="referrer" content="no-referrer">
+
+
+	<link rel="alternate" type="application/atom+xml" title="" href="/nsxiv/nsxiv-extra.atom">
+	<link rel="alternate" type="application/rss+xml" title="" href="/nsxiv/nsxiv-extra.rss">
+
+	<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+	<link rel="alternate icon" href="/assets/img/favicon.png" type="image/png">
+	
+<script>
+	
+	window.addEventListener('error', function(e) {window._globalHandlerErrors=window._globalHandlerErrors||[]; window._globalHandlerErrors.push(e);});
+	window.addEventListener('unhandledrejection', function(e) {window._globalHandlerErrors=window._globalHandlerErrors||[]; window._globalHandlerErrors.push(e);});
+	window.config = {
+		appUrl: 'https:\/\/codeberg.org\/',
+		appSubUrl: '',
+		assetVersionEncoded: encodeURIComponent('7.0.0-315-d280452cc0~gitea-1.21.11'), 
+		assetUrlPrefix: '\/assets',
+		runModeIsProd:  true ,
+		customEmojis: {"codeberg":":codeberg:","forgejo":":forgejo:","git":":git:","gitea":":gitea:","github":":github:","gitlab":":gitlab:","gogs":":gogs:"},
+		csrfToken: '2RpBnoA6m0R2qRufNVOc2rMhfAY6MTcxNzgzNDk4NTM1NTU0MTM1Ng',
+		pageData: {},
+		notificationSettings: {"EventSourceUpdateTime":10000,"MaxTimeout":60000,"MinTimeout":10000,"TimeoutStep":10000}, 
+		enableTimeTracking:  true ,
+		
+		mermaidMaxSourceCharacters:  5000 ,
+		
+		i18n: {
+			copy_success: "Copied!",
+			copy_error: "Copy failed",
+			error_occurred: "An error occurred",
+			network_error: "Network error",
+			remove_label_str: "Remove item \"%s\"",
+			modal_confirm: "Confirm",
+			modal_cancel: "Cancel",
+			more_items: "More items",
+		},
+	};
+	
+	window.config.pageData = window.config.pageData || {};
+</script>
+<script src="/assets/js/webcomponents.js?v=7.0.0-315-d280452cc0~gitea-1.21.11"></script>
+
+	<noscript>
+		<style>
+			.dropdown:hover > .menu { display: block; }
+			.ui.secondary.menu .dropdown.item > .menu { margin-top: 0; }
+		</style>
+	</noscript>
+	
+	
+		<meta property="og:title" content="nsxiv-extra/patches/random-image/random-image-v31.diff at master">
+		<meta property="og:url" content="https://codeberg.org//nsxiv/nsxiv-extra/src/branch/master/patches/random-image/random-image-v31.diff">
+		
+	
+	<meta property="og:type" content="object">
+	
+		<meta property="og:image" content="https://codeberg.org/avatars/61d1c188a782417ca3c66df3f80a0f92">
+	
+
+<meta property="og:site_name" content="Codeberg.org">
+
+	<link rel="stylesheet" href="/assets/css/index.css?v=7.0.0-315-d280452cc0~gitea-1.21.11">
+<link rel="stylesheet" href="/assets/css/theme-codeberg-auto.css?v=7.0.0-315-d280452cc0~gitea-1.21.11">
+
+	
+</head>
+<body hx-headers='{"x-csrf-token": "2RpBnoA6m0R2qRufNVOc2rMhfAY6MTcxNzgzNDk4NTM1NTU0MTM1Ng"}' hx-swap="outerHTML" hx-ext="morph" hx-push-url="false">
+	
+
+	<div class="full height">
+		<noscript>This website requires JavaScript.</noscript>
+
+		
+
+		
+			
+
+	
+
+
+<nav id="navbar" aria-label="Navigation Bar">
+	<div class="navbar-left ui secondary menu">
+		
+		<a class="item" id="navbar-logo" href="/" aria-label="Dashboard">
+			<img width="30" height="30" src="https://design.codeberg.org/logo-kit/icon_inverted.svg" aria-hidden="true">
+		</a>
+
+		
+		<div class="ui secondary menu item navbar-mobile-right only-mobile">
+			
+			<a id="mobile-notifications-icon" class="item tw-w-auto tw-p-2" href="/notifications" data-tooltip-content="Notifications" aria-label="Notifications">
+				<div class="tw-relative">
+					<svg viewBox="0 0 16 16" class="svg octicon-bell" aria-hidden="true" width="16" height="16"><path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16M3 5a5 5 0 0 1 10 0v2.947q0 .076.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.26.26 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556-.003.01.001.006q0 .003.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007-.003-.01-1.703-2.554a1.75 1.75 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5"/></svg>
+					<span class="notification_count tw-hidden">0</span>
+				</div>
+			</a>
+			
+			<button class="item tw-w-auto ui icon mini button tw-p-2 tw-m-0" id="navbar-expand-toggle" aria-label="Toggle Menu"><svg viewBox="0 0 16 16" class="svg octicon-three-bars" aria-hidden="true" width="16" height="16"><path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75m0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75M1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5"/></svg></button>
+		</div>
+
+		
+		
+			
+				<a class="item" href="/issues">Issues</a>
+			
+			
+				<a class="item" href="/pulls">Pull requests</a>
+			
+			
+				
+					<a class="item" href="/milestones">Milestones</a>
+				
+			
+			<a class="item" href="/explore/repos">Explore</a>
+		
+
+		
+
+		
+	</div>
+
+	
+	<div class="navbar-right ui secondary menu">
+		
+			
+			<a class="active-stopwatch-trigger item tw-mx-0 tw-hidden" href="" title="Active Time Tracker">
+				<div class="tw-relative">
+					<svg viewBox="0 0 16 16" class="svg octicon-stopwatch" aria-hidden="true" width="16" height="16"><path d="M5.75.75A.75.75 0 0 1 6.5 0h3a.75.75 0 0 1 0 1.5h-.75v1l-.001.041a6.7 6.7 0 0 1 3.464 1.435l.007-.006.75-.75a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734l-.75.75-.006.007a6.75 6.75 0 1 1-10.548 0L2.72 5.03l-.75-.75a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018l.75.75.007.006A6.7 6.7 0 0 1 7.25 2.541V1.5H6.5a.75.75 0 0 1-.75-.75M8 14.5a5.25 5.25 0 1 0-.001-10.501A5.25 5.25 0 0 0 8 14.5m.389-6.7 1.33-1.33a.75.75 0 1 1 1.061 1.06L9.45 8.861A1.503 1.503 0 0 1 8 10.75a1.499 1.499 0 1 1 .389-2.95"/></svg>
+					<span class="header-stopwatch-dot"></span>
+				</div>
+				<span class="only-mobile tw-ml-2">Active Time Tracker</span>
+			</a>
+			<div class="active-stopwatch-popup item tippy-target tw-p-2">
+				<div class="tw-flex tw-items-center">
+					<a class="stopwatch-link tw-flex tw-items-center" href="">
+						<svg viewBox="0 0 16 16" class="tw-mr-2 svg octicon-issue-opened" aria-hidden="true" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0"/></svg>
+						<span class="stopwatch-issue">#</span>
+						<span class="ui primary label stopwatch-time tw-my-0 tw-mx-4" data-seconds="">
+							
+						</span>
+					</a>
+					<form class="stopwatch-commit" method="post" action="/times/stopwatch/toggle">
+						<input type="hidden" name="_csrf" value="2RpBnoA6m0R2qRufNVOc2rMhfAY6MTcxNzgzNDk4NTM1NTU0MTM1Ng">
+						<button
+							type="submit"
+							class="ui button mini compact basic icon"
+							data-tooltip-content="Stop timer"
+						><svg viewBox="0 0 16 16" class="svg octicon-square-fill" aria-hidden="true" width="16" height="16"><path d="M5.75 4h4.5c.966 0 1.75.784 1.75 1.75v4.5A1.75 1.75 0 0 1 10.25 12h-4.5A1.75 1.75 0 0 1 4 10.25v-4.5C4 4.784 4.784 4 5.75 4"/></svg></button>
+					</form>
+					<form class="stopwatch-cancel" method="post" action="/times/stopwatch/cancel">
+						<input type="hidden" name="_csrf" value="2RpBnoA6m0R2qRufNVOc2rMhfAY6MTcxNzgzNDk4NTM1NTU0MTM1Ng">
+						<button
+							type="submit"
+							class="ui button mini compact basic icon"
+							data-tooltip-content="Discard"
+						><svg viewBox="0 0 16 16" class="svg octicon-trash" aria-hidden="true" width="16" height="16"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75M4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.75 1.75 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15M6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25"/></svg></button>
+					</form>
+				</div>
+			</div>
+			
+
+			<a class="item not-mobile tw-mx-0" href="/notifications" data-tooltip-content="Notifications" aria-label="Notifications">
+				<div class="tw-relative">
+					<svg viewBox="0 0 16 16" class="svg octicon-bell" aria-hidden="true" width="16" height="16"><path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16M3 5a5 5 0 0 1 10 0v2.947q0 .076.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.26.26 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556-.003.01.001.006q0 .003.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007-.003-.01-1.703-2.554a1.75 1.75 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5"/></svg>
+					<span class="notification_count tw-hidden">0</span>
+				</div>
+			</a>
+
+			<div class="ui dropdown jump item tw-mx-0 tw-pr-2" data-tooltip-content="Create…">
+				<span class="text">
+					<svg viewBox="0 0 16 16" class="svg octicon-plus" aria-hidden="true" width="16" height="16"><path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2"/></svg>
+					<span class="not-mobile"><svg viewBox="0 0 16 16" class="svg octicon-triangle-down" aria-hidden="true" width="16" height="16"><path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427"/></svg></span>
+					<span class="only-mobile">Create…</span>
+				</span>
+				<div class="menu">
+					<a class="item" href="/repo/create">
+						<svg viewBox="0 0 16 16" class="svg octicon-plus" aria-hidden="true" width="16" height="16"><path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2"/></svg> New repository
+					</a>
+					
+						<a class="item" href="/repo/migrate">
+							<svg viewBox="0 0 16 16" class="svg octicon-repo-push" aria-hidden="true" width="16" height="16"><path d="M1 2.5A2.5 2.5 0 0 1 3.5 0h8.75a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0V1.5h-8a1 1 0 0 0-1 1v6.708A2.5 2.5 0 0 1 3.5 9h3.25a.75.75 0 0 1 0 1.5H3.5a1 1 0 0 0 0 2h5.75a.75.75 0 0 1 0 1.5H3.5A2.5 2.5 0 0 1 1 11.5Zm13.23 7.79zl-1.224-1.224v6.184a.75.75 0 0 1-1.5 0V9.066L10.28 10.29a.75.75 0 0 1-1.06-1.061l2.505-2.504a.75.75 0 0 1 1.06 0L15.29 9.23a.75.75 0 0 1-.018 1.042.75.75 0 0 1-1.042.018"/></svg> New migration
+						</a>
+					
+					
+					<a class="item" href="/org/create">
+						<svg viewBox="0 0 16 16" class="svg octicon-organization" aria-hidden="true" width="16" height="16"><path d="M1.75 16A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5q0 .127-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.8.8 0 0 1-.197-.026q-.148.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75Zm-.25-1.75c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM3.75 6h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5M3 3.75A.75.75 0 0 1 3.75 3h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 3.75m4 3A.75.75 0 0 1 7.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 7 6.75M7.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5M3 9.75A.75.75 0 0 1 3.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 9.75M7.75 9h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5"/></svg> New organization
+					</a>
+					
+				</div>
+			</div>
+
+			<div class="ui dropdown jump item tw-mx-0 tw-pr-2" data-tooltip-content="Profile and Settings…">
+				<span class="text tw-flex tw-items-center">
+					<img class="ui avatar tw-align-middle tw-mr-1" src="/avatars/60e37e51a1c0bc71efa225cf3bae455d0ec6e496a7257b1c113cb2152b607275?size=48" title="Frestein" width="24" height="24"/>
+					<span class="only-mobile tw-ml-2">Frestein</span>
+					<span class="not-mobile"><svg viewBox="0 0 16 16" class="svg octicon-triangle-down" aria-hidden="true" width="16" height="16"><path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427"/></svg></span>
+				</span>
+				<div class="menu user-menu">
+					<div class="ui header">
+						Signed in as <strong>Frestein</strong>
+					</div>
+
+					<div class="divider"></div>
+					<a class="item" href="/Frestein">
+						<svg viewBox="0 0 16 16" class="svg octicon-person" aria-hidden="true" width="16" height="16"><path d="M10.561 8.073a6 6 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6 6 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0M10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0"/></svg>
+						Profile
+					</a>
+					
+						<a class="item" href="/Frestein?tab=stars">
+							<svg viewBox="0 0 16 16" class="svg octicon-star" aria-hidden="true" width="16" height="16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25m0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41z"/></svg>
+							Starred
+						</a>
+					
+					<a class="item" href="/notifications/subscriptions">
+						<svg viewBox="0 0 16 16" class="svg octicon-bell" aria-hidden="true" width="16" height="16"><path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16M3 5a5 5 0 0 1 10 0v2.947q0 .076.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.26.26 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556-.003.01.001.006q0 .003.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007-.003-.01-1.703-2.554a1.75 1.75 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5"/></svg>
+						Subscriptions
+					</a>
+					<a class="item" href="/user/settings">
+						<svg viewBox="0 0 16 16" class="svg octicon-tools" aria-hidden="true" width="16" height="16"><path d="M5.433 2.304A4.49 4.49 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A6 6 0 0 1 2 6a6 6 0 0 1 2.567-4.92 1.48 1.48 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.82c0 .082.041.16.11.206l.75.51a.25.25 0 0 0 .28 0l.75-.51A.25.25 0 0 0 9 5.282V2.463c0-.596.298-1.127.76-1.423a1.48 1.48 0 0 1 1.673.04A6 6 0 0 1 14 6a6 6 0 0 1-2.786 5.068c-.157.1-.209.23-.207.315l.163 3.33a.752.752 0 0 1-1.094.714.75.75 0 0 1-.404-.64l-.164-3.345c-.027-.717.384-1.312.902-1.64A4.5 4.5 0 0 0 12.5 6a4.49 4.49 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.818a1.75 1.75 0 0 1-.767 1.448l-.75.51a1.75 1.75 0 0 1-1.966 0l-.75-.51A1.75 1.75 0 0 1 5.5 5.282V2.463c0-.092-.043-.142-.067-.159"/></svg>
+						Settings
+					</a>
+					<a class="item" target="_blank" rel="noopener noreferrer" href="https://docs.codeberg.org">
+						<svg viewBox="0 0 16 16" class="svg octicon-question" aria-hidden="true" width="16" height="16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.76 2.76 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6 6 0 0 0-.26.16 1 1 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1 1 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.61.61 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1 1 0 0 0-.34.398M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>
+						Help
+					</a>
+					
+
+					<div class="divider"></div>
+					<a class="item link-action" href data-url="/user/logout">
+						<svg viewBox="0 0 16 16" class="svg octicon-sign-out" aria-hidden="true" width="16" height="16"><path d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 0 1 0 1.5h-2.5a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 0 1.5h-2.5A1.75 1.75 0 0 1 2 13.25Zm10.44 4.5-1.97-1.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734l1.97-1.97H6.75a.75.75 0 0 1 0-1.5Z"/></svg>
+						Sign Out
+					</a>
+				</div>
+			</div>
+		
+	</div>
+</nav>
+
+		
+
+
+
+<div role="main" aria-label="nsxiv-extra/patches/random-image/random-image-v31.diff at master" class="page-content repository file list ">
+	<div class="secondary-nav">
+
+	<div class="ui container">
+		<div class="repo-header">
+			<div class="flex-item tw-items-center">
+				<div class="flex-item-leading">
+					
+
+	<svg viewBox="0 0 16 16" class="svg octicon-repo" aria-hidden="true" width="24" height="24"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.5 2.5 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.5 2.5 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.25.25 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+
+
+				</div>
+				<div class="flex-item-main">
+					<div class="flex-item-title gt-font-18">
+						<a class="muted gt-font-normal" href="/nsxiv">nsxiv</a>/<a class="muted" href="/nsxiv/nsxiv-extra">nsxiv-extra</a>
+					</div>
+				</div>
+				<div class="flex-item-trailing">
+					
+					
+						
+					
+					
+					
+				</div>
+			</div>
+			
+				<div class="repo-buttons">
+					
+					
+					
+					
+					<a class="ui compact small basic button" href="/nsxiv/nsxiv-extra.rss" data-tooltip-content="RSS Feed">
+						<svg viewBox="0 0 16 16" class="svg octicon-rss" aria-hidden="true" width="16" height="16"><path d="M2.002 2.725a.75.75 0 0 1 .797-.699C8.79 2.42 13.58 7.21 13.974 13.201a.75.75 0 0 1-1.497.098 10.5 10.5 0 0 0-9.776-9.776.747.747 0 0 1-.7-.798ZM2.84 7.05h-.002a7 7 0 0 1 6.113 6.111.75.75 0 0 1-1.49.178 5.5 5.5 0 0 0-4.8-4.8.75.75 0 0 1 .179-1.489M2 13a1 1 0 1 1 2 0 1 1 0 0 1-2 0"/></svg>
+					</a>
+					
+					<form hx-boost="true" hx-target="this" method="post" action="/nsxiv/nsxiv-extra/action/watch">
+	<div class="ui labeled button" >
+		<button type="submit" class="ui compact small basic button">
+			
+				<svg viewBox="0 0 16 16" class="svg octicon-eye" aria-hidden="true" width="16" height="16"><path d="M8 2c1.981 0 3.671.992 4.933 2.078 1.27 1.091 2.187 2.345 2.637 3.023a1.62 1.62 0 0 1 0 1.798c-.45.678-1.367 1.932-2.637 3.023C11.67 13.008 9.981 14 8 14s-3.671-.992-4.933-2.078C1.797 10.83.88 9.576.43 8.898a1.62 1.62 0 0 1 0-1.798c.45-.677 1.367-1.931 2.637-3.022C4.33 2.992 6.019 2 8 2M1.679 7.932a.12.12 0 0 0 0 .136c.411.622 1.241 1.75 2.366 2.717C5.176 11.758 6.527 12.5 8 12.5s2.825-.742 3.955-1.715c1.124-.967 1.954-2.096 2.366-2.717a.12.12 0 0 0 0-.136c-.412-.621-1.242-1.75-2.366-2.717C10.824 4.242 9.473 3.5 8 3.5s-2.825.742-3.955 1.715c-1.124.967-1.954 2.096-2.366 2.717M8 10a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 10"/></svg><span class="text not-mobile">Watch</span>
+			
+		</button>
+		<a hx-boost="false" class="ui basic label" href="/nsxiv/nsxiv-extra/watchers">
+			9
+		</a>
+	</div>
+</form>
+
+					
+					<form hx-boost="true" hx-target="this" method="post" action="/nsxiv/nsxiv-extra/action/unstar">
+	<div class="ui labeled button" >
+		<button type="submit" class="ui compact small basic button">
+			
+				<svg viewBox="0 0 16 16" class="svg octicon-star-fill" aria-hidden="true" width="16" height="16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25"/></svg><span class="text not-mobile">Unstar</span>
+			
+		</button>
+		<a hx-boost="false" class="ui basic label" href="/nsxiv/nsxiv-extra/stars">
+			14
+		</a>
+	</div>
+</form>
+
+					
+					
+					
+
+	<div class="ui labeled button
+		"
+		
+	>
+		<a class="ui compact small basic button"
+			
+				href="/nsxiv/nsxiv-extra/fork"
+			
+		>
+			<svg viewBox="0 0 16 16" class="svg octicon-repo-forked" aria-hidden="true" width="16" height="16"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0M5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0m6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5m-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0"/></svg><span class="text not-mobile">Fork</span>
+		</a>
+		<div class="ui small modal" id="fork-repo-modal">
+			<div class="header">
+				You've already forked nsxiv-extra
+			</div>
+			<div class="content tw-text-left">
+				<div class="ui list">
+					
+				</div>
+				
+				<div class="divider"></div>
+				<a href="/nsxiv/nsxiv-extra/fork">Fork to a different account</a>
+				
+			</div>
+		</div>
+		<a class="ui basic label" href="/nsxiv/nsxiv-extra/forks">
+			4
+		</a>
+	</div>
+
+
+
+					
+				</div>
+			
+		</div>
+		
+		
+		
+	</div>
+
+	<overflow-menu class="ui container secondary pointing tabular top attached borderless menu tw-pt-0 tw-my-0">
+		
+			<div class="overflow-menu-items">
+				
+				<a class="active item" href="/nsxiv/nsxiv-extra">
+					<svg viewBox="0 0 16 16" class="svg octicon-code" aria-hidden="true" width="16" height="16"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215m-6.56 0a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg> Code
+				</a>
+				
+
+				
+					<a class="item" href="/nsxiv/nsxiv-extra/issues">
+						<svg viewBox="0 0 16 16" class="svg octicon-issue-opened" aria-hidden="true" width="16" height="16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0"/></svg> Issues
+						
+							<span class="ui small label">2</span>
+						
+					</a>
+				
+
+				
+
+				
+					<a class="item" href="/nsxiv/nsxiv-extra/pulls">
+						<svg viewBox="0 0 16 16" class="svg octicon-git-pull-request" aria-hidden="true" width="16" height="16"><path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25m5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354M3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5m0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5m8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0"/></svg> Pull requests
+						
+					</a>
+				
+
+				
+
+				
+
+				
+
+				
+
+				
+
+				
+
+				
+					<a class="item" href="/nsxiv/nsxiv-extra/activity">
+						<svg viewBox="0 0 16 16" class="svg octicon-pulse" aria-hidden="true" width="16" height="16"><path d="M6 2c.306 0 .582.187.696.471L10 10.731l1.304-3.26A.75.75 0 0 1 12 7h3.25a.75.75 0 0 1 0 1.5h-2.742l-1.812 4.528a.751.751 0 0 1-1.392 0L6 4.77 4.696 8.03A.75.75 0 0 1 4 8.5H.75a.75.75 0 0 1 0-1.5h2.742l1.812-4.529A.75.75 0 0 1 6 2"/></svg> Activity
+					</a>
+				
+
+				
+
+				
+
+				
+			</div>
+		
+	</overflow-menu>
+	<div class="ui tabs divider"></div>
+</div>
+
+	<div class="ui container ">
+		
+
+
+
+
+		
+
+		
+		
+
+		
+		
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+	
+	
+
+
+
+	
+	
+
+
+
+
+
+		
+		
+
+		
+		
+		
+		<div class="repo-button-row">
+			<div class="tw-flex tw-items-center tw-gap-y-2">
+				
+
+
+
+
+
+
+	
+
+
+
+
+<script type="module">
+	const data = {
+		'textReleaseCompare': "Compare",
+		'textCreateTag': "Create tag \u003cstrong\u003e%s\u003c/strong\u003e",
+		'textCreateBranch': "Create branch \u003cstrong\u003e%s\u003c/strong\u003e",
+		'textCreateBranchFrom': "from \"%s\"",
+		'textBranches': "Branches",
+		'textTags': "Tags",
+		'textDefaultBranchLabel': "default",
+
+		'mode': 'branches',
+		'showBranchesInDropdown':  true ,
+		'searchFieldPlaceholder': 'Filter branch or tag...',
+		'branchForm':  null ,
+		'disableCreateBranch':  true ,
+		'setAction':  null ,
+		'submitForm':  null ,
+		'viewType': "branch",
+		'refName': "master",
+		'commitIdShort': "3f7bca9129",
+		'tagName': "",
+		'branchName': "master",
+		'noTag':  null ,
+		'defaultSelectedRefName': "master",
+		'repoDefaultBranch': "master",
+		'enableFeed':  true ,
+		'rssURLPrefix': '\/nsxiv\/nsxiv-extra/rss/branch/',
+		'branchURLPrefix': '\/nsxiv\/nsxiv-extra/src/branch/',
+		'branchURLSuffix': '/patches\/random-image\/random-image-v31.diff',
+		'tagURLPrefix': '\/nsxiv\/nsxiv-extra/src/tag/',
+		'tagURLSuffix': '/patches\/random-image\/random-image-v31.diff',
+		'repoLink': "/nsxiv/nsxiv-extra",
+		'treePath': "patches/random-image/random-image-v31.diff",
+		'branchNameSubURL': "branch/master",
+		'noResults': "No results found.",
+	};
+	
+	window.config.pageData.branchDropdownDataList = window.config.pageData.branchDropdownDataList || [];
+	window.config.pageData.branchDropdownDataList.push(data);
+</script>
+
+<div class="js-branch-tag-selector tw-mr-1">
+	
+	<div class="ui dropdown custom">
+		<button class="branch-dropdown-button gt-ellipsis ui basic small compact button tw-flex tw-m-0">
+			<span class="text tw-flex tw-items-center tw-mr-1">
+				
+					
+						<svg viewBox="0 0 16 16" class="svg octicon-git-branch" aria-hidden="true" width="16" height="16"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.5 2.5 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25m-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0m8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5M4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5"/></svg>
+					
+					<strong ref="dropdownRefName" class="tw-ml-2">master</strong>
+				
+			</span>
+			<svg viewBox="0 0 16 16" class="dropdown icon svg octicon-triangle-down" aria-hidden="true" width="14" height="14"><path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427"/></svg>
+		</button>
+	</div>
+</div>
+
+				
+					
+					
+					
+					
+					<a id="new-pull-request" role="button" class="ui compact basic button" href="/nsxiv/nsxiv-extra/compare/master...master"
+						data-tooltip-content="Compare">
+						<svg viewBox="0 0 16 16" class="svg octicon-git-pull-request" aria-hidden="true" width="16" height="16"><path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25m5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354M3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5m0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5m8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0"/></svg>
+					</a>
+				
+				
+				
+
+				
+
+				
+				
+					<span class="breadcrumb repo-path tw-ml-1">
+						<a class="section" href="/nsxiv/nsxiv-extra/src/branch/master" title="nsxiv-extra">nsxiv-extra</a><span class="breadcrumb-divider">/</span><span class="section"><a href="/nsxiv/nsxiv-extra/src/branch/master/patches" title="patches">patches</a></span><span class="breadcrumb-divider">/</span><span class="section"><a href="/nsxiv/nsxiv-extra/src/branch/master/patches/random-image" title="random-image">random-image</a></span><span class="breadcrumb-divider">/</span><span class="active section" title="random-image-v31.diff">random-image-v31.diff</span></span>
+				
+			</div>
+			<div class="tw-flex tw-items-center">
+				
+				
+				
+			</div>
+		</div>
+		
+			<div class="tab-size-4 non-diff-file-content">
+
+	
+		<div id="repo-file-commit-box" class="ui segment list-header tw-mb-4 tw-flex tw-justify-between">
+			<div class="latest-commit">
+				
+	
+		<img class="ui avatar tw-align-middle tw-mr-1" src="/avatars/89cd0b1960a8a99703c37c938c8e6390?size=48" title="NRK" width="24" height="24"/>
+		
+			<a class="muted author-wrapper" title="NRK" href="/NRK"><strong>NRK</strong></a>
+		
+	
+	<a rel="nofollow" class="ui sha label " href="/nsxiv/nsxiv-extra/commit/eb9c24b8a89bd9c58bf3238ffae7d7f385984768">
+		<span class="shortsha">eb9c24b8a8</span>
+		
+	</a>
+	
+	
+		<a class="tw-align-middle  tw-no-underline" data-tippy="commit-statuses" href="https://ci.codeberg.org/nsxiv/nsxiv-extra/pipeline/107/1">
+			
+
+
+
+
+	<svg viewBox="0 0 16 16" class="commit-status icon text red svg octicon-x" aria-hidden="true" width="18" height="18"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L8 9.06l-3.22 3.22a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06"/></svg>
+
+
+
+		</a>
+	
+	<div class="tippy-target">
+		
+
+
+<div class="commit-status-panel">
+	<div class="ui top attached header commit-status-header">
+		
+			Some checks failed
+		
+
+		
+	</div>
+
+	<div class="commit-status-list">
+		
+			<div class="commit-status-item">
+				
+
+
+
+
+	<svg viewBox="0 0 16 16" class="commit-status icon text red svg octicon-x" aria-hidden="true" width="18" height="18"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L8 9.06l-3.22 3.22a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06"/></svg>
+
+
+
+				<div class="status-context gt-ellipsis">ci/woodpecker/push/apply-patches <span class="text light-2">Pipeline failed</span></div>
+				<div class="ui status-details">
+					
+					<span><a href="https://ci.codeberg.org/nsxiv/nsxiv-extra/pipeline/107/1">Details</a></span>
+				</div>
+			</div>
+		
+		
+	</div>
+</div>
+
+
+	</div>
+
+
+	
+	<span class="grey commit-summary" title="random-image: update to v31"><span class="message-wrapper"><a href="/nsxiv/nsxiv-extra/commit/eb9c24b8a89bd9c58bf3238ffae7d7f385984768" class="default-link muted">random-image: update to v31</a></span>
+		
+	</span>
+
+
+			</div>
+			
+				
+					<div class="text grey age">
+						<relative-time prefix="" tense="past" datetime="2023-01-30T21:36:04+06:00" data-tooltip-content data-tooltip-interactive="true">2023-01-30 21:36:04 +06:00</relative-time>
+					</div>
+				
+			
+		</div>
+	
+
+	<h4 class="file-header ui top attached header tw-flex tw-items-center tw-justify-between tw-flex-wrap">
+		<div class="file-header-left tw-flex tw-items-center tw-py-2 tw-pr-4">
+			
+				<div class="file-info text grey normal tw-font-mono">
+	
+	
+		<div class="file-info-entry">
+			85 lines
+		</div>
+	
+	
+		<div class="file-info-entry">
+			2.4 KiB
+		</div>
+	
+	
+	
+		<div class="file-info-entry">
+			Diff
+		</div>
+	
+	
+	
+	
+	
+</div>
+
+			
+		</div>
+		<div class="file-header-right file-actions tw-flex tw-items-center tw-flex-wrap">
+			
+			
+				<div class="ui buttons tw-mr-1">
+					
+					<a class="ui mini basic button" href="/nsxiv/nsxiv-extra/raw/branch/master/patches/random-image/random-image-v31.diff">Raw</a>
+					
+						<a class="ui mini basic button" href="/nsxiv/nsxiv-extra/src/commit/3f7bca9129f0766a64fbe6af4129cc84f679b5a4/patches/random-image/random-image-v31.diff">Permalink</a>
+					
+					
+						<a class="ui mini basic button" href="/nsxiv/nsxiv-extra/blame/branch/master/patches/random-image/random-image-v31.diff">Blame</a>
+					
+					<a class="ui mini basic button" href="/nsxiv/nsxiv-extra/commits/branch/master/patches/random-image/random-image-v31.diff">History</a>
+					
+				</div>
+				<a download href="/nsxiv/nsxiv-extra/raw/branch/master/patches/random-image/random-image-v31.diff"><span class="btn-octicon" data-tooltip-content="Download file"><svg viewBox="0 0 16 16" class="svg octicon-download" aria-hidden="true" width="16" height="16"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06z"/></svg></span></a>
+				<a id="copy-content" class="btn-octicon " data-tooltip-content="Copy content"><svg viewBox="0 0 16 16" class="svg octicon-copy" aria-hidden="true" width="14" height="14"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg></a>
+				
+					
+						<a class="btn-octicon" href="/nsxiv/nsxiv-extra/rss/branch/master/patches/random-image/random-image-v31.diff" data-tooltip-content="RSS Feed">
+							<svg viewBox="0 0 16 16" class="svg octicon-rss" aria-hidden="true" width="14" height="14"><path d="M2.002 2.725a.75.75 0 0 1 .797-.699C8.79 2.42 13.58 7.21 13.974 13.201a.75.75 0 0 1-1.497.098 10.5 10.5 0 0 0-9.776-9.776.747.747 0 0 1-.7-.798ZM2.84 7.05h-.002a7 7 0 0 1 6.113 6.111.75.75 0 0 1-1.49.178 5.5 5.5 0 0 0-4.8-4.8.75.75 0 0 1 .179-1.489M2 13a1 1 0 1 1 2 0 1 1 0 0 1-2 0"/></svg>
+						</a>
+					
+				
+				
+					
+						<span class="btn-octicon disabled" data-tooltip-content="You must fork this repository to make or propose changes to this file."><svg viewBox="0 0 16 16" class="svg octicon-pencil" aria-hidden="true" width="16" height="16"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.25.25 0 0 0-.064.108l-.558 1.953 1.953-.558a.25.25 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"/></svg></span>
+					
+					
+						<span class="btn-octicon disabled" data-tooltip-content="You must have write access to make or propose changes to this file."><svg viewBox="0 0 16 16" class="svg octicon-trash" aria-hidden="true" width="16" height="16"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75M4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.75 1.75 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15M6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25"/></svg></span>
+					
+				
+			
+			
+		</div>
+	</h4>
+	<div class="ui bottom attached table unstackable segment">
+		
+			
+	
+
+
+		
+		<div class="file-view code-view">
+			
+				
+				<table>
+					<tbody>
+						
+						
+						<tr>
+							<td id="L1" class="lines-num"><span id="L1" data-line-number="1"></span></td>
+							
+							<td rel="L1" class="lines-code chroma"><code class="code-inner"><span class="gh">diff --git a/commands.c b/commands.c
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L2" class="lines-num"><span id="L2" data-line-number="2"></span></td>
+							
+							<td rel="L2" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gh">index a4ae38d..3798d38 100644
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L3" class="lines-num"><span id="L3" data-line-number="3"></span></td>
+							
+							<td rel="L3" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gd">--- a/commands.c
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L4" class="lines-num"><span id="L4" data-line-number="4"></span></td>
+							
+							<td rel="L4" class="lines-code chroma"><code class="code-inner"><span class="gd"></span><span class="gi">+++ b/commands.c
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L5" class="lines-num"><span id="L5" data-line-number="5"></span></td>
+							
+							<td rel="L5" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gu">@@ -476,3 +476,35 @@ bool ct_select(arg_t _)
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L6" class="lines-num"><span id="L6" data-line-number="6"></span></td>
+							
+							<td rel="L6" class="lines-code chroma"><code class="code-inner"><span class="gu"></span> 
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L7" class="lines-num"><span id="L7" data-line-number="7"></span></td>
+							
+							<td rel="L7" class="lines-code chroma"><code class="code-inner"> 	return dirty;
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L8" class="lines-num"><span id="L8" data-line-number="8"></span></td>
+							
+							<td rel="L8" class="lines-code chroma"><code class="code-inner"> }
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L9" class="lines-num"><span id="L9" data-line-number="9"></span></td>
+							
+							<td rel="L9" class="lines-code chroma"><code class="code-inner"><span class="gi">+
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L10" class="lines-num"><span id="L10" data-line-number="10"></span></td>
+							
+							<td rel="L10" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+/*
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L11" class="lines-num"><span id="L11" data-line-number="11"></span></td>
+							
+							<td rel="L11" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+ * NOTE(NRK): could be faster with __builtin_clz(), but i&#39;ve opted for portibility instead.
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L12" class="lines-num"><span id="L12" data-line-number="12"></span></td>
+							
+							<td rel="L12" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+ * ref: https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L13" class="lines-num"><span id="L13" data-line-number="13"></span></td>
+							
+							<td rel="L13" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+ */
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L14" class="lines-num"><span id="L14" data-line-number="14"></span></td>
+							
+							<td rel="L14" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+static unsigned int next_power_of_2_modmask(unsigned int v)
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L15" class="lines-num"><span id="L15" data-line-number="15"></span></td>
+							
+							<td rel="L15" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+{
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L16" class="lines-num"><span id="L16" data-line-number="16"></span></td>
+							
+							<td rel="L16" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	--v;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L17" class="lines-num"><span id="L17" data-line-number="17"></span></td>
+							
+							<td rel="L17" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	v |= v &gt;&gt; 1;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L18" class="lines-num"><span id="L18" data-line-number="18"></span></td>
+							
+							<td rel="L18" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	v |= v &gt;&gt; 2;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L19" class="lines-num"><span id="L19" data-line-number="19"></span></td>
+							
+							<td rel="L19" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	v |= v &gt;&gt; 4;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L20" class="lines-num"><span id="L20" data-line-number="20"></span></td>
+							
+							<td rel="L20" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	v |= v &gt;&gt; 8;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L21" class="lines-num"><span id="L21" data-line-number="21"></span></td>
+							
+							<td rel="L21" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	v |= v &gt;&gt; 16;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L22" class="lines-num"><span id="L22" data-line-number="22"></span></td>
+							
+							<td rel="L22" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	return v;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L23" class="lines-num"><span id="L23" data-line-number="23"></span></td>
+							
+							<td rel="L23" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+}
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L24" class="lines-num"><span id="L24" data-line-number="24"></span></td>
+							
+							<td rel="L24" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L25" class="lines-num"><span id="L25" data-line-number="25"></span></td>
+							
+							<td rel="L25" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+/*
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L26" class="lines-num"><span id="L26" data-line-number="26"></span></td>
+							
+							<td rel="L26" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+ * rejects any baised samples with the bitmask approach described in:
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L27" class="lines-num"><span id="L27" data-line-number="27"></span></td>
+							
+							<td rel="L27" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+ * https://www.pcg-random.org/posts/bounded-rands.html
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L28" class="lines-num"><span id="L28" data-line-number="28"></span></td>
+							
+							<td rel="L28" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+ */
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L29" class="lines-num"><span id="L29" data-line-number="29"></span></td>
+							
+							<td rel="L29" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+bool cg_random(arg_t _)
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L30" class="lines-num"><span id="L30" data-line-number="30"></span></td>
+							
+							<td rel="L30" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+{
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L31" class="lines-num"><span id="L31" data-line-number="31"></span></td>
+							
+							<td rel="L31" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	if (filecnt &gt;= 2) {
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L32" class="lines-num"><span id="L32" data-line-number="32"></span></td>
+							
+							<td rel="L32" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+		int n;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L33" class="lines-num"><span id="L33" data-line-number="33"></span></td>
+							
+							<td rel="L33" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+		unsigned int mask = next_power_of_2_modmask(filecnt);
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L34" class="lines-num"><span id="L34" data-line-number="34"></span></td>
+							
+							<td rel="L34" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+		do {
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L35" class="lines-num"><span id="L35" data-line-number="35"></span></td>
+							
+							<td rel="L35" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+			n = rand() &amp; mask;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L36" class="lines-num"><span id="L36" data-line-number="36"></span></td>
+							
+							<td rel="L36" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+		} while (n &gt;= filecnt || n == fileidx);
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L37" class="lines-num"><span id="L37" data-line-number="37"></span></td>
+							
+							<td rel="L37" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+		return navigate_to(n);
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L38" class="lines-num"><span id="L38" data-line-number="38"></span></td>
+							
+							<td rel="L38" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	}
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L39" class="lines-num"><span id="L39" data-line-number="39"></span></td>
+							
+							<td rel="L39" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+	return false;
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L40" class="lines-num"><span id="L40" data-line-number="40"></span></td>
+							
+							<td rel="L40" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gi">+}
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L41" class="lines-num"><span id="L41" data-line-number="41"></span></td>
+							
+							<td rel="L41" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gh">diff --git a/commands.h b/commands.h
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L42" class="lines-num"><span id="L42" data-line-number="42"></span></td>
+							
+							<td rel="L42" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gh">index 76b1330..82e2aef 100644
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L43" class="lines-num"><span id="L43" data-line-number="43"></span></td>
+							
+							<td rel="L43" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gd">--- a/commands.h
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L44" class="lines-num"><span id="L44" data-line-number="44"></span></td>
+							
+							<td rel="L44" class="lines-code chroma"><code class="code-inner"><span class="gd"></span><span class="gi">+++ b/commands.h
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L45" class="lines-num"><span id="L45" data-line-number="45"></span></td>
+							
+							<td rel="L45" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gu">@@ -22,6 +22,7 @@ bool cg_toggle_fullscreen(arg_t);
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L46" class="lines-num"><span id="L46" data-line-number="46"></span></td>
+							
+							<td rel="L46" class="lines-code chroma"><code class="code-inner"><span class="gu"></span> bool cg_toggle_image_mark(arg_t);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L47" class="lines-num"><span id="L47" data-line-number="47"></span></td>
+							
+							<td rel="L47" class="lines-code chroma"><code class="code-inner"> bool cg_unmark_all(arg_t);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L48" class="lines-num"><span id="L48" data-line-number="48"></span></td>
+							
+							<td rel="L48" class="lines-code chroma"><code class="code-inner"> bool cg_zoom(arg_t);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L49" class="lines-num"><span id="L49" data-line-number="49"></span></td>
+							
+							<td rel="L49" class="lines-code chroma"><code class="code-inner"><span class="gi">+bool cg_random(arg_t);
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L50" class="lines-num"><span id="L50" data-line-number="50"></span></td>
+							
+							<td rel="L50" class="lines-code chroma"><code class="code-inner"><span class="gi"></span> /* image mode */
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L51" class="lines-num"><span id="L51" data-line-number="51"></span></td>
+							
+							<td rel="L51" class="lines-code chroma"><code class="code-inner"> bool ci_alternate(arg_t);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L52" class="lines-num"><span id="L52" data-line-number="52"></span></td>
+							
+							<td rel="L52" class="lines-code chroma"><code class="code-inner"> bool ci_cursor_navigate(arg_t);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L53" class="lines-num"><span id="L53" data-line-number="53"></span></td>
+							
+							<td rel="L53" class="lines-code chroma"><code class="code-inner"><span class="gu">@@ -67,6 +68,7 @@ bool ct_select(arg_t);
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L54" class="lines-num"><span id="L54" data-line-number="54"></span></td>
+							
+							<td rel="L54" class="lines-code chroma"><code class="code-inner"><span class="gu"></span> #define g_toggle_image_mark { cg_toggle_image_mark, MODE_ALL }
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L55" class="lines-num"><span id="L55" data-line-number="55"></span></td>
+							
+							<td rel="L55" class="lines-code chroma"><code class="code-inner"> #define g_unmark_all { cg_unmark_all, MODE_ALL }
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L56" class="lines-num"><span id="L56" data-line-number="56"></span></td>
+							
+							<td rel="L56" class="lines-code chroma"><code class="code-inner"> #define g_zoom { cg_zoom, MODE_ALL }
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L57" class="lines-num"><span id="L57" data-line-number="57"></span></td>
+							
+							<td rel="L57" class="lines-code chroma"><code class="code-inner"><span class="gi">+#define g_random { cg_random, MODE_ALL }
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L58" class="lines-num"><span id="L58" data-line-number="58"></span></td>
+							
+							<td rel="L58" class="lines-code chroma"><code class="code-inner"><span class="gi"></span> 
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L59" class="lines-num"><span id="L59" data-line-number="59"></span></td>
+							
+							<td rel="L59" class="lines-code chroma"><code class="code-inner"> /* image mode */
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L60" class="lines-num"><span id="L60" data-line-number="60"></span></td>
+							
+							<td rel="L60" class="lines-code chroma"><code class="code-inner"> #define i_alternate { ci_alternate, MODE_IMAGE }
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L61" class="lines-num"><span id="L61" data-line-number="61"></span></td>
+							
+							<td rel="L61" class="lines-code chroma"><code class="code-inner"><span class="gh">diff --git a/config.def.h b/config.def.h
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L62" class="lines-num"><span id="L62" data-line-number="62"></span></td>
+							
+							<td rel="L62" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gh">index a0935f6..610b79c 100644
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L63" class="lines-num"><span id="L63" data-line-number="63"></span></td>
+							
+							<td rel="L63" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gd">--- a/config.def.h
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L64" class="lines-num"><span id="L64" data-line-number="64"></span></td>
+							
+							<td rel="L64" class="lines-code chroma"><code class="code-inner"><span class="gd"></span><span class="gi">+++ b/config.def.h
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L65" class="lines-num"><span id="L65" data-line-number="65"></span></td>
+							
+							<td rel="L65" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gu">@@ -98,6 +98,7 @@ static const keymap_t keys[] = {
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L66" class="lines-num"><span id="L66" data-line-number="66"></span></td>
+							
+							<td rel="L66" class="lines-code chroma"><code class="code-inner"><span class="gu"></span> 	{ ControlMask,  XK_x,             g_prefix_external,    None },
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L67" class="lines-num"><span id="L67" data-line-number="67"></span></td>
+							
+							<td rel="L67" class="lines-code chroma"><code class="code-inner"> 	{ 0,            XK_g,             g_first,              None },
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L68" class="lines-num"><span id="L68" data-line-number="68"></span></td>
+							
+							<td rel="L68" class="lines-code chroma"><code class="code-inner"> 	{ 0,            XK_G,             g_n_or_last,          None },
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L69" class="lines-num"><span id="L69" data-line-number="69"></span></td>
+							
+							<td rel="L69" class="lines-code chroma"><code class="code-inner"><span class="gi">+	{ ControlMask,  XK_r,             g_random,             None },
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L70" class="lines-num"><span id="L70" data-line-number="70"></span></td>
+							
+							<td rel="L70" class="lines-code chroma"><code class="code-inner"><span class="gi"></span> 	{ 0,            XK_r,             g_reload_image,       None },
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L71" class="lines-num"><span id="L71" data-line-number="71"></span></td>
+							
+							<td rel="L71" class="lines-code chroma"><code class="code-inner"> 	{ 0,            XK_D,             g_remove_image,       None },
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L72" class="lines-num"><span id="L72" data-line-number="72"></span></td>
+							
+							<td rel="L72" class="lines-code chroma"><code class="code-inner"> 	{ ControlMask,  XK_h,             g_scroll_screen,      DIR_LEFT },
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L73" class="lines-num"><span id="L73" data-line-number="73"></span></td>
+							
+							<td rel="L73" class="lines-code chroma"><code class="code-inner"><span class="gh">diff --git a/main.c b/main.c
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L74" class="lines-num"><span id="L74" data-line-number="74"></span></td>
+							
+							<td rel="L74" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gh">index eed945c..04ceb9e 100644
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L75" class="lines-num"><span id="L75" data-line-number="75"></span></td>
+							
+							<td rel="L75" class="lines-code chroma"><code class="code-inner"><span class="gh"></span><span class="gd">--- a/main.c
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L76" class="lines-num"><span id="L76" data-line-number="76"></span></td>
+							
+							<td rel="L76" class="lines-code chroma"><code class="code-inner"><span class="gd"></span><span class="gi">+++ b/main.c
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L77" class="lines-num"><span id="L77" data-line-number="77"></span></td>
+							
+							<td rel="L77" class="lines-code chroma"><code class="code-inner"><span class="gi"></span><span class="gu">@@ -863,6 +863,7 @@ int main(int argc, char *argv[])
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L78" class="lines-num"><span id="L78" data-line-number="78"></span></td>
+							
+							<td rel="L78" class="lines-code chroma"><code class="code-inner"><span class="gu"></span> 	setup_signal(SIGCHLD, SIG_DFL, SA_RESTART|SA_NOCLDSTOP|SA_NOCLDWAIT);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L79" class="lines-num"><span id="L79" data-line-number="79"></span></td>
+							
+							<td rel="L79" class="lines-code chroma"><code class="code-inner"> 	setup_signal(SIGPIPE, SIG_IGN, 0);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L80" class="lines-num"><span id="L80" data-line-number="80"></span></td>
+							
+							<td rel="L80" class="lines-code chroma"><code class="code-inner"> 
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L81" class="lines-num"><span id="L81" data-line-number="81"></span></td>
+							
+							<td rel="L81" class="lines-code chroma"><code class="code-inner"><span class="gi">+	srand(time(NULL));
+</span></code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L82" class="lines-num"><span id="L82" data-line-number="82"></span></td>
+							
+							<td rel="L82" class="lines-code chroma"><code class="code-inner"><span class="gi"></span> 	setlocale(LC_COLLATE, &#34;&#34;);
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L83" class="lines-num"><span id="L83" data-line-number="83"></span></td>
+							
+							<td rel="L83" class="lines-code chroma"><code class="code-inner"> 
+</code></td>
+						</tr>
+						
+						
+						<tr>
+							<td id="L84" class="lines-num"><span id="L84" data-line-number="84"></span></td>
+							
+							<td rel="L84" class="lines-code chroma"><code class="code-inner"> 	parse_options(argc, argv);
+</code></td>
+						</tr>
+						
+					</tbody>
+				</table>
+				<div class="code-line-menu tippy-target">
+					
+						<a class="item ref-in-new-issue" role="menuitem" data-url-issue-new="/nsxiv/nsxiv-extra/issues/new" data-url-param-body-link="/nsxiv/nsxiv-extra/src/commit/3f7bca9129f0766a64fbe6af4129cc84f679b5a4/patches/random-image/random-image-v31.diff" rel="nofollow noindex">Reference in a new issue</a>
+					
+					<a class="item view_git_blame" role="menuitem" href="/nsxiv/nsxiv-extra/blame/commit/3f7bca9129f0766a64fbe6af4129cc84f679b5a4/patches/random-image/random-image-v31.diff">View git blame</a>
+					<a class="item copy-line-permalink" role="menuitem" data-url="/nsxiv/nsxiv-extra/src/commit/3f7bca9129f0766a64fbe6af4129cc84f679b5a4/patches/random-image/random-image-v31.diff">Copy permalink</a>
+				</div>
+				
+			
+		</div>
+	</div>
+</div>
+
+		
+	</div>
+</div>
+
+
+	
+
+	</div>
+
+	
+
+	<footer class="page-footer" role="group" aria-label="Footer">
+	<div class="grid" aria-label="Links">
+		<div class="branding not-mobile" aria-hidden="true">
+			<img src="https://design.codeberg.org/logo-kit/icon_inverted.svg">
+		</div>
+		<div>
+			<b>Codeberg</b>
+			<ul>
+				<li><a href="https://docs.codeberg.org" target="_blank">Documentation</a></li>
+				<li><a href="/Codeberg/Community/issues">Community Issues</a></li>
+				
+					<li><a href="/about">Landing Page</a></li>
+				
+				<li><a href="/Codeberg/Contributing">Contributing</a>
+				<li><a href="https://docs.codeberg.org/contact/#abuse" target="_blank">Report Abuse</a>
+			</ul>
+		</div>
+		<div>
+			<b>Association</b>
+			<ul>
+				<li><a href="https://docs.codeberg.org/getting-started/what-is-codeberg/#what-is-codeberg-e.v.%3F" target="_blank">Who are we?</a></li>
+				<li><a href="/codeberg/org/src/en/bylaws.md" target="_blank">Bylaws / Satzung</a></li>
+				<li><a href="https://docs.codeberg.org/improving-codeberg/donate/" target="_blank">Donate</a></li>
+				<li><a href="https://join.codeberg.org" target="_blank">Join / Support</a></li>
+				<li><a href="https://docs.codeberg.org/contact/" target="_blank">Contact</a></li>
+			</ul>
+		</div>
+		<div>
+			<b>Service</b>
+			<ul>
+				<li><a href="https://codeberg.page" target="_blank">Codeberg Pages</a></li>
+				<li><a href="https://translate.codeberg.org" target="_blank">Weblate Translations</a></li>
+				<li><a href="https://docs.codeberg.org/ci/#using-codeberg's-instance-of-woodpecker-ci" target="_blank">Woodpecker CI</a></li>
+				
+					<li><a href="/api/swagger">Forgejo API</a></li>
+				
+				<li><a href="https://status.codeberg.eu" target="_blank">Status Page</a></li>
+			</ul>
+		</div>
+		<div>
+			<b>Legal</b>
+			<ul>
+				<li><a href="/codeberg/org/src/Imprint.md" target="_blank">Imprint / Impressum</a></li>
+				<li><a href="/codeberg/org/src/PrivacyPolicy.md" target="_blank">Privacy Policy</a></li>
+				<li><a href="/assets/licenses.txt">Licenses</a></li>
+				<li><a href="/codeberg/org/src/TermsOfUse.md">Terms of Use</a></li>
+			</ul>
+		</div>
+	</div>
+	<center>
+		<a href="https://blog.codeberg.org" target="_blank">Blog</a> |
+		<a href="https://social.anoxinon.de/@Codeberg" target="_blank" rel="noopener noreferrer">Mastodon</a> |
+		<a href="https://matrix.to/#/#codeberg-space:matrix.org" target="_blank" rel="noopener noreferrer">Matrix Space</a>
+	</center>
+	<div class="gt-float-right">
+		<div class="ui language bottom floating slide up dropdown link item button">
+			<svg viewBox="0 0 16 16" class="svg octicon-globe" aria-hidden="true" width="16" height="16"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M5.78 8.75a9.64 9.64 0 0 0 1.363 4.177q.383.64.857 1.215c.245-.296.551-.705.857-1.215A9.64 9.64 0 0 0 10.22 8.75Zm4.44-1.5a9.64 9.64 0 0 0-1.363-4.177c-.307-.51-.612-.919-.857-1.215a10 10 0 0 0-.857 1.215A9.64 9.64 0 0 0 5.78 7.25Zm-5.944 1.5H1.543a6.51 6.51 0 0 0 4.666 5.5q-.184-.271-.352-.552c-.715-1.192-1.437-2.874-1.581-4.948m-2.733-1.5h2.733c.144-2.074.866-3.756 1.58-4.948q.18-.295.353-.552a6.51 6.51 0 0 0-4.666 5.5m10.181 1.5c-.144 2.074-.866 3.756-1.58 4.948q-.18.296-.353.552a6.51 6.51 0 0 0 4.666-5.5Zm2.733-1.5a6.51 6.51 0 0 0-4.666-5.5q.184.272.353.552c.714 1.192 1.436 2.874 1.58 4.948Z"/></svg>
+			<div class="text">English</div>
+			<div class="menu language-menu">
+				
+					<a lang="id-ID" data-url="/?lang=id-ID" class="item ">Bahasa Indonesia</a>
+				
+					<a lang="de-DE" data-url="/?lang=de-DE" class="item ">Deutsch</a>
+				
+					<a lang="en-US" data-url="/?lang=en-US" class="item active selected">English</a>
+				
+					<a lang="es-ES" data-url="/?lang=es-ES" class="item ">Español</a>
+				
+					<a lang="eo" data-url="/?lang=eo" class="item ">Esperanto</a>
+				
+					<a lang="fil" data-url="/?lang=fil" class="item ">Filipino</a>
+				
+					<a lang="fr-FR" data-url="/?lang=fr-FR" class="item ">Français</a>
+				
+					<a lang="it-IT" data-url="/?lang=it-IT" class="item ">Italiano</a>
+				
+					<a lang="lv-LV" data-url="/?lang=lv-LV" class="item ">Latviešu</a>
+				
+					<a lang="hu-HU" data-url="/?lang=hu-HU" class="item ">Magyar nyelv</a>
+				
+					<a lang="nl-NL" data-url="/?lang=nl-NL" class="item ">Nederlands</a>
+				
+					<a lang="pl-PL" data-url="/?lang=pl-PL" class="item ">Polski</a>
+				
+					<a lang="pt-PT" data-url="/?lang=pt-PT" class="item ">Português de Portugal</a>
+				
+					<a lang="pt-BR" data-url="/?lang=pt-BR" class="item ">Português do Brasil</a>
+				
+					<a lang="sl" data-url="/?lang=sl" class="item ">Slovenščina</a>
+				
+					<a lang="fi-FI" data-url="/?lang=fi-FI" class="item ">Suomi</a>
+				
+					<a lang="sv-SE" data-url="/?lang=sv-SE" class="item ">Svenska</a>
+				
+					<a lang="tr-TR" data-url="/?lang=tr-TR" class="item ">Türkçe</a>
+				
+					<a lang="cs-CZ" data-url="/?lang=cs-CZ" class="item ">Čeština</a>
+				
+					<a lang="el-GR" data-url="/?lang=el-GR" class="item ">Ελληνικά</a>
+				
+					<a lang="bg" data-url="/?lang=bg" class="item ">Български</a>
+				
+					<a lang="ru-RU" data-url="/?lang=ru-RU" class="item ">Русский</a>
+				
+					<a lang="uk-UA" data-url="/?lang=uk-UA" class="item ">Українська</a>
+				
+					<a lang="fa-IR" data-url="/?lang=fa-IR" class="item ">فارسی</a>
+				
+					<a lang="ml-IN" data-url="/?lang=ml-IN" class="item ">മലയാളം</a>
+				
+					<a lang="ja-JP" data-url="/?lang=ja-JP" class="item ">日本語</a>
+				
+					<a lang="zh-CN" data-url="/?lang=zh-CN" class="item ">简体中文</a>
+				
+					<a lang="zh-TW" data-url="/?lang=zh-TW" class="item ">繁體中文（台灣）</a>
+				
+					<a lang="zh-HK" data-url="/?lang=zh-HK" class="item ">繁體中文（香港）</a>
+				
+					<a lang="ko-KR" data-url="/?lang=ko-KR" class="item ">한국어</a>
+				
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+	<script src="/assets/js/index.js?v=7.0.0-315-d280452cc0~gitea-1.21.11" onerror="alert('Failed to load asset files from ' + this.src + '. Please make sure the asset files can be accessed.')"></script>
+
+	
+</body>
+</html>
+
