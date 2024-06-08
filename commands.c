@@ -255,7 +255,10 @@ bool ci_navigate(arg_t n)
 	if (prefix > 0)
 		n *= prefix;
 	n += fileidx;
-	n = MAX(0, MIN(n, filecnt - 1));
+	if (n < 0)
+		n = filecnt - 1;
+	if (n >= filecnt)
+		n = 0;
 
 	if (n != fileidx) {
 		load_image(n);
